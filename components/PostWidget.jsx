@@ -24,7 +24,7 @@ const PostWidget = ({ categories, slug }) => {
   return (
     <div className="bg-white shadow-lg rounded-lg p-8 pb-12 mb-8">
       <h3 className="text-xl mb-8 font-semibold border-b pb-4">{slug ? 'Podobné recepty' : 'Najnovšie recepty'}</h3>
-      {relatedPosts.map((post, index) => (
+      {relatedPosts.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()).map((post, index) => (
         <div key={index} className="flex items-center w-full mb-4">
           <div className="w-16 flex-none">
             <Image
@@ -44,7 +44,7 @@ const PostWidget = ({ categories, slug }) => {
         </div>
       ))}
     </div>
-  );
-};
+  ); 
+}
 
 export default PostWidget;
